@@ -5,7 +5,7 @@
 
 <header th:replace="fragments :: header"></header>
 
-<form method = "post" action = "/events/create">
+<form method="post">
     <div class="form-group">
         <label>Name
             <input th:field="${event.name}" class="form-control">
@@ -19,7 +19,7 @@
         <p class="error" th:errors="${event.description}"></p>
     </div>
     <div class="form-group">
-        <label>Contact E-Mail
+        <label>Contact Email
             <input th:field="${event.contactEmail}" class="form-control">
         </label>
         <p class="error" th:errors="${event.contactEmail}"></p>
@@ -28,50 +28,14 @@
         <label>Type
             <select th:field="${event.type}">
                 <option th:each="type : ${types}"
-                   th:value="${type}"
+                        th:value="${type}"
                         th:text="${type.displayName}"
                 ></option>
             </select>
         </label>
     </div>
     <div class="form-group">
-        <label>Location
-            <select th:field="${event.location}">
-                <option th:each="location : ${locations}"
-                        th:value="${location}"
-                        th:text="${location.displayName}"
-                ></option>
-            </select>
-        </label>
-    </div>
-    <div class="form-group">
-        <label>Must Register
-            <select th:field="${event.register}">
-                <option th:each="register : ${registers}"
-                        th:value="${register}"
-                        th:text="${register.displayName}"
-                ></option>
-            </select>
-        </label>
-    </div>
-    <div class="form-group">
-        <label>Attendance
-            <input th:field="${event.attendance}" class="form-control">
-        </label>
-        <p class="error" th:errors="${event.attendance}"></p>
-    </div>
-    <div class="form-group">
-        <label>Cancelled
-            <select th:field="${event.cancelled}">
-                <option th:each="cancelled : ${cancels}"
-                        th:value="${cancelled}"
-                        th:text="${cancelled.displayName}"
-                ></option>
-            </select>
-        </label>
-    </div>
-    <div class="form-group">
-        <input type="submit" value = "Create" class="btn btn-success">
+        <input type="submit" value="Create" class="btn btn-success">
     </div>
 </form>
 
