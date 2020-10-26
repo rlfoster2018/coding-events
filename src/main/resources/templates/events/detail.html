@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">                       //step 1 make a thymeleaf
+<head th:replace="fragments :: head"></head>                                //step 2 map the fragments
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table table-striped">                                         //step 3 define table type
+    <tr>
+        <th>ID</th>
+        <td th:text="${event.id}"></td>                                     //step 4 map the types
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td th:text="${event.eventDetails.description}"></td>
+    </tr>
+    <tr>
+        <th>Contact Email</th>
+        <th th:text="${event.eventDetails.contactEmail}"></th>
+    </tr>
+</table>
+</body>
+</html>
