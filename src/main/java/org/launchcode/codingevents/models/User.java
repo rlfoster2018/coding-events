@@ -1,26 +1,36 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class User extends AbstractEntity{
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+public class User extends AbstractEntity {
 
     @NotNull
-    private String userName;
+    private String username;
 
     @NotNull
     private String pwHash;
 
-    public User() { }
-
-    public User(@NotNull String userName, @NotNull String pwHash) {
-        this.userName = userName;
-        this.pwHash = pwHash;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.pwHash = encoder.encode(password);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
 
 }
